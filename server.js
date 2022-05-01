@@ -6,7 +6,7 @@ const expressSession = require("express-session");
 const app = express();
 const http = require("http").createServer(app);
 
-// Express App Config
+
 const session = expressSession({
   secret: "coding is amazing",
   resave: false,
@@ -37,7 +37,7 @@ const boardRoutes = require("./api/board/board.routes");
 const giphyRoutes = require("./api/giphy/giphy.routes");
 const { connectSockets } = require("./services/socket.service");
 
-// routes
+
 const setupAsyncLocalStorage = require("./middlewares/setupAls.middleware");
 app.all("*", setupAsyncLocalStorage);
 
@@ -47,9 +47,6 @@ app.use("/api/board", boardRoutes);
 app.use("/api/giphy", giphyRoutes);
 connectSockets(http, session);
 
-// Make every server-side-route to match the index.html
-// so when requesting http://localhost:3030/index.html/car/123 it will still respond with
-// our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
 app.get("/**", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
