@@ -20,8 +20,6 @@ async function query(filterBy = {}) {
     users = users.map((user) => {
       delete user.password;
       user.createdAt = ObjectId(user._id).getTimestamp();
-      // Returning fake fresh data
-      // user.createdAt = Date.now() - (1000 * 60 * 60 * 24 * 3) // 3 days ago
       return user;
     });
     return users;
@@ -74,9 +72,8 @@ async function remove(userId) {
 
 async function update(user) {
   try {
-    // peek only updatable fields!
     const userToSave = {
-      _id: ObjectId(user._id), // needed for the returnd obj
+      _id: ObjectId(user._id),
       username: user.username,
       fullname: user.fullname,
       imgUrl: user.imgUrl
@@ -92,7 +89,6 @@ async function update(user) {
 
 async function add(user) {
   try {
-    // peek only updatable fields!
     const userToAdd = {
       username: user.username,
       password: user.password,

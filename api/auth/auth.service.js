@@ -19,7 +19,7 @@ async function login(username, password) {
 }
 
 // (async () => {
-//   await signup('guest', '123', 'my guest')
+//   await signup('lihi123', '123', 'Lihi Sered')
 //   // await signup('mumu', '123', 'Mumu Maha')
 // })()
 
